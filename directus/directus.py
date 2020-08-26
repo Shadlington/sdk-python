@@ -186,10 +186,12 @@ class DirectusClient:
             "offset": offset,
             "sort": ",".join(sort),
             "single": single,
-            "filter": filter,
             "status": status,
             "q": q,
         }
+        if filter:
+            for filter_key in filter.keys():
+                params[f'filter{filter_key}'] = filter[filter_key]
 
         if page:
             params["page"] = page
